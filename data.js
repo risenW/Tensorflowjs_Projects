@@ -49,6 +49,10 @@ export const FEATURE_NAMES = ['X','Y','month','day','FFMC','DMC','DC','ISI','tem
          this.ytest = null;
      }
 
+     get dataShape(){
+         return this.Xtrain[0].length;
+     }
+
      async loadAllData(){
          this.Xtrain = await read_csv(TRAIN_DATA)
          this.Xtest = await read_csv(TEST_DATA)

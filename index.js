@@ -2,9 +2,15 @@ import * as tf from '@tensorflow/tfjs';
 import * as tfvis from '@tensorflow/tfjs-vis';
 import { ForestDataset, FEATURE_NAMES } from './data';
 import { normalizeData } from './utils'
+import * as ui from './ui';
 
 const forestdata = new ForestDataset();
 const tensors = {}
+
+const LEARNING_RATE = 0.01
+const EPOCHS = 100
+const BATCH_SIZE = 32
+
 /**
  * Convert Array of Arrays to Tensors, and normalize the features
  */
@@ -16,20 +22,62 @@ export function arrayToTensor() {
 
 }
 
+export function CreateNeuralNetwork(){
+    const model = tf.sequential();
+    model.add(tf.layers.dense({
+        inputShape: [forestdata.dataShape],
+        units: 20,
+        activation: 'relu',
+        kernelInitializer: 'leCunNormal'
+    }));
+    model.add(tf.layers.dense({
+        units: 10, activation:'relu', kernelInitializer: 'leCunNormal'}));
+    model.add(tf.layers.dense({units: 1}))
+
+    model.summary();
+    return model;
+}
+
+
+/**
+ * Trains the neural Network and prints the result
+ */
+export async function train(model){
+    let trainingLogs = [];
+    let chartbox = document.getElementById('chart')
+    model.compile({
+        optimizer: tf.train.sgd(LEARNING_RATE),
+        loss: 'meanSquaredError'
+    });
+
+    ui.updateStatus("Training started....")
+    await model.fit(tensors.Xtrain_tf, tensors.ytrain_tf,{
+        batchSize: BATCH_SIZE,
+        epochs: EPOCHS,
+        validationSplit: 0.2,
+        callbacks:{
+            onEpochEnd: async(curr_epoch, logs)=>{
+                await ui.updateTrainingStatus(curr_epoch, EPOCHS)
+                trainingLogs.push(logs);
+                //plot the training chart
+                tfvis.show.history(chartbox, trainingLogs, ['loss', 'val_loss'])
+
+            }
+        }
+    })
+}
+
+
+
+
 //Download and convert data to tensor as soon as the page is loaded
 document.addEventListener('DOMContentLoaded', async () => {
+    ui.updateStatus("Loading Data set and Converting to Tensors....")
     await forestdata.loadAllData()
     arrayToTensor();
-    tf.print(tensors.Xtrain_tf)
-    // ui.updateStatus(
-
-    //     'Data is now available as tensors.\n' +
-    //     'Click a train button to begin.');
-    // // TODO Explain what baseline loss is. How it is being computed in this
-    // // Instance
-    // ui.updateBaselineStatus('Estimating baseline loss');
-    // computeBaseline();
-    // await ui.setup();
+    ui.updateStatus("Data Loaded Successfully....")
+    // tf.print(tensors.Xtrain_tf)
+    await ui.setUp()
 }, false);
 
 
