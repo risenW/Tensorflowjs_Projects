@@ -64,8 +64,19 @@ export async function train(model){
 
             }
         }
-    })
-}
+    });
+    ui.updateStatus("Evaluating model on test data")
+    const result = model.evaluate(tensors.Xtest_tf, tensors.ytest_tf, {
+        batchSize: BATCH_SIZE,
+    });
+    const test_loss = result.dataSync()[0];
+    const train_loss = trainingLogs[trainingLogs.length - 1].loss;
+    const val_loss = trainingLogs[trainingLogs.length - 1].val_loss;
+
+    await ui.updateTrainingStatus(train_loss, val_loss, test_loss)
+
+};
+
 
 
 
@@ -76,6 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await forestdata.loadAllData()
     arrayToTensor();
     ui.updateStatus("Data Loaded Successfully....")
+    document.getElementById('trainModel').style.display = 'block'
     // tf.print(tensors.Xtrain_tf)
     await ui.setUp()
 }, false);
