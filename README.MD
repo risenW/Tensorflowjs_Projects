@@ -8,3 +8,5 @@ https://pypi.org/project/nodeenv/
 CSV RADING
 https://www.joyofdata.de/blog/parsing-local-csv-file-with-javascript-papa-parse/
 
+TF CSV DATA API
+https://js.tensorflow.org/api/latest/#data.csv
