@@ -1,10 +1,8 @@
 {
-  "name": "tfjs-examples-mlr-core",
-  "version": "0.1.0",
-  "description": "",
+  "name": "forest-fire-predictor",
+  "version": "0.0.1",
+  "description": "A simple Neural Network to predict burnt forest area",
   "main": "index.js",
-  "license": "Apache-2.0",
-  "private": true,
   "engines": {
     "node": ">=8.9.0"
   },
@@ -14,9 +12,7 @@
     "papaparse": "^4.5.0"
   },
   "scripts": {
-    "watch": "cross-env NODE_ENV=development parcel index.html --no-hmr --open",
-    "build": "cross-env NODE_ENV=production parcel build index.html --no-minify --public-url ./",
-    "link-local": "yalc link"
+    "watch": "cross-env NODE_ENV=development parcel index.html --no-hmr --open"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
@@ -25,9 +21,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
-    "clang-format": "~1.2.2",
     "cross-env": "^5.1.6",
-    "parcel-bundler": "^1.12.4",
-    "yalc": "~1.0.0-pre.22"
+    "parcel-bundler": "^1.12.4"
   }
 }
