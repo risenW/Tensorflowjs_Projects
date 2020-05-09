@@ -1,6 +1,11 @@
-## Build and Train a Neural Network to predict Forest Fire Area Uisng Tensorflow.js in the browser
+## Build and Train a Neural Network to predict Forest Fire Area Using Tensorflow.js in the browser
 ### INSTALLATION PROCESS
-* Clone the repo from [Here]()
+* Clone the repo
+```
+   git clone https://github.com/risenW/Tensorflowjs_Projects
+   cd Tensorflowjs_Projects/forestfire-regression
+```
+* Install [Node.js](https://nodejs.org/en/) (Any version greater than 8)
 * Install a package manager (preferably [yarn](https://classic.yarnpkg.com/en/docs/install/#debian-stable)
 
 ### Run the command
