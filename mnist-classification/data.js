@@ -25,8 +25,7 @@ async function loadData() {
             label: { isLabel: true }
         }
     });
-
-    await csvDataset.take(DATA_SIZE).forEachAsync(row => process(row));
+    await csvDataset.forEachAsync(row => process(row));
 
 }
 
