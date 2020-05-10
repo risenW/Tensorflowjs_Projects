@@ -9,7 +9,6 @@ const data = require('./data')
 const model = require('./model')
 
 
-
 const indexRouter = require('./routes/index');
 
 const app = express();
@@ -50,44 +49,7 @@ const args = parser.parseArgs();
 
 if (args.train == 1) {
     console.log("Training Started. Sit back and relax")
-    const cnn_model = model.getModel()
-    data.loadModelAndTrain(args).then((da) => {
-        cnn_model.fitDataset(da, {
-            epochs: args.epochs,
-            callbacks: {
-                onEpochEnd: async (epoch, logs) => {
-                    console.log(epoch + ':' + logs.acc);
-                }
-            }
-        })
-        // da.forEachAsync(e => console.log(e))
-
-    })
-    // Fit the model using the prepared Dataset
-    // cnn_model.fitDataset(data.loadModelAndTrain(args), {
-    //     epochs: args.epochs,
-    //     callbacks: {
-    //         onEpochEnd: async (epoch, logs) => {
-    //             console.log(epoch + ':' + logs.acc);
-    //         }
-    //     }
-    // });
-
-
-
-    // data.loadModelAndTrain(args).then(cnn_model => {
-    //     console.log(`Final Loss: ${cnn_model.history.loss}\n`)
-    //     console.log(`Final Accuracy: ${cnn_model.history.acc}\n`)
-    //     console.log(`Saving Model in ${args.model_save_path}\n`)
-    //     if (args.model_save_path != null) {
-    //         cnn_model.save(args.model_save_path).then(() => {
-    //             console.log(`Saved model to path: ${args.model_save_path}\n`);
-    //         })
-    //     }
-
-    // }).catch(err => {
-    //     console.log(err)
-    // })
+    model.trainModel(args)
 }
 
 
