@@ -10,10 +10,8 @@ const IMAGE_HEIGHT = 28
 const IMAGE_CHANNEL = 1
 const IMAGE_SIZE = 784;
 const NUM_CLASSES = 10;
-// const DATA_SIZE = 42000
-const DATA_SIZE = 20
-// const NUM_TRAIN_DATA = 38000
-const NUM_TRAIN_DATA = 15
+const DATA_SIZE = 42000
+const NUM_TRAIN_DATA = 38000
 const NUM_TEST_DATA = DATA_SIZE - NUM_TRAIN_DATA
 
 const TENSOR_DATA = []
@@ -55,7 +53,6 @@ exports.MnistClass = class MnistDataset {
         this.Xtest = tf.tensor(TENSOR_DATA.slice(NUM_TRAIN_DATA)).reshape([NUM_TEST_DATA, IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL]).div(255)
         this.ytrain = tf.oneHot(tf.tensor1d(LABEL.slice(0, NUM_TRAIN_DATA), 'int32'), NUM_CLASSES);
         this.ytest = tf.oneHot(tf.tensor1d(LABEL.slice(NUM_TRAIN_DATA), 'int32'), NUM_CLASSES);
-
     }
 
 }

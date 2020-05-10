@@ -48,7 +48,7 @@ const args = parser.parseArgs();
 
 
 if (args.train == 1) {
-    console.log("Training Started. Sit back and relax")
+    console.log("Loading Dataset. Sit back and relax")
     model.trainModel(args)
 }
 

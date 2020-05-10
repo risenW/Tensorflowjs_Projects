@@ -57,6 +57,7 @@ exports.trainModel = async (args) => {
     dataset = new mnist()
 
     dataset.startDataLoading().then(async () => {
+        console.log("Data Loaded Successfully. Training started.")
         await cnn_model.fit(dataset.Xtrain, dataset.ytrain, {
             epochs: args.epochs,
             batchSize: args.batch_size,
