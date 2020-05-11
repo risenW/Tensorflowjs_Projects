@@ -1,4 +1,5 @@
 /***
+ * Code for canvas drawing is mostly stolen from this nice project below
  * https://github.com/Gogul09/digit-recognizer-live/blob/master/js/app.js
  */
 
@@ -14,9 +15,6 @@ var clickX = new Array();
 var clickY = new Array();
 var clickD = new Array();
 var drawing;
-
-// document.getElementById('chart_box').innerHTML = "";
-// document.getElementById('chart_box').style.display = "none";
 
 //---------------
 // Create canvas
@@ -36,6 +34,7 @@ if (typeof G_vmlCanvasManager != 'undefined') {
 
 ctx = canvas.getContext("2d");
 
+
 //---------------------
 // MOUSE DOWN function
 //---------------------
@@ -47,6 +46,7 @@ $("#canvas").mousedown(function (e) {
     addUserGesture(mouseX, mouseY);
     drawOnCanvas();
 });
+
 
 //---------------------
 // MOUSE MOVE function
@@ -67,6 +67,7 @@ $("#canvas").mousemove(function (e) {
 $("#canvas").mouseup(function (e) {
     drawing = false;
 });
+
 
 //----------------------
 // MOUSE LEAVE function
@@ -119,12 +120,12 @@ function clearCanvas(id) {
 }
 
 
-
+//Updating model status
 tstatus = document.getElementById('status')
 predval = document.getElementById('predval')
 
 
-//Load the CNN Model
+//Load the CNN Model on page load
 document.addEventListener('DOMContentLoaded', async () => {
     await loadModel();
 }, false);
@@ -134,7 +135,6 @@ async function loadModel() {
     tstatus.innerText = 'Loading Model...'
     model = await tf.loadLayersModel("http://localhost:3000/assets/model/model.json");
     tstatus.innerText = 'Model Loaded Successfully. Start Drawing!'
-
     // model.summary()
 }
 
@@ -157,13 +157,7 @@ function getImageFromCanvas(image) {
 
 
 async function predict() {
-
-    // preprocess canvas
     let tensor = getImageFromCanvas(canvas);
-
-    // make predictions on the preprocessed image tensor
     let pred = await model.predict(tensor).argMax([-1])
-    // tf.print(pred)
-    console.log(pred.arraySync()[0])
     predval.innerText = pred.arraySync()[0]
 }
