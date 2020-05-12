@@ -36,17 +36,21 @@ parser.addArgument('--model_save_path', {
     type: 'string',
     help: 'Path to which the model will be saved after training.'
 });
-parser.addArgument('--train', {
+parser.addArgument('--train_mode', {
     type: 'int',
-    defaultValue: 0,
-    help: 'Train model on node backend (1=true, 0=false).'
+    help: 'Train with full dataset ot not on node backend (1=true, 0=false).'
 });
 
 const args = parser.parseArgs();
 
 
-if (args.train == 1) {
-    console.log("Loading Dataset. Sit back and relax")
+if (args.train_mode == 1) {
+    console.log("Loading Full Dataset. Sit back and relax")
+    model.trainModel(args)
+}
+
+if (args.train_mode == 0) {
+    console.log("Loading Train and Test Dataset. Sit back and relax")
     model.trainModel(args)
 }
 

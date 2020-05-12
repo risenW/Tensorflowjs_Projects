@@ -21,7 +21,7 @@ async function loadData() {
             label: { isLabel: true }
         }
     });
-    await csvDataset.take(DATA_SIZE).forEachAsync(row => process(row));
+    await csvDataset.forEachAsync(row => process(row));
 
 }
 
@@ -40,13 +40,22 @@ exports.MnistClass = class MnistDataset {
         this.ytest = null
     }
 
-    async startDataLoading() {
+    async startDataLoading(train_mode) {
         // dat = new MnistDataset()
         await loadData()
-        this.Xtrain = tf.tensor(TENSOR_DATA.slice(0, NUM_TRAIN_DATA)).reshape([NUM_TRAIN_DATA, IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL]).div(255.0)
-        this.Xtest = tf.tensor(TENSOR_DATA.slice(NUM_TRAIN_DATA)).reshape([NUM_TEST_DATA, IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL]).div(255.0)
-        this.ytrain = tf.oneHot(tf.tensor1d(LABEL.slice(0, NUM_TRAIN_DATA), 'int32'), NUM_CLASSES);
-        this.ytest = tf.oneHot(tf.tensor1d(LABEL.slice(NUM_TRAIN_DATA), 'int32'), NUM_CLASSES);
+        if (train_mode == 0) {
+            //partial training
+            this.Xtrain = tf.tensor(TENSOR_DATA.slice(0, NUM_TRAIN_DATA)).reshape([NUM_TRAIN_DATA, IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL]).div(255.0)
+            this.Xtest = tf.tensor(TENSOR_DATA.slice(NUM_TRAIN_DATA)).reshape([NUM_TEST_DATA, IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL]).div(255.0)
+            this.ytrain = tf.oneHot(tf.tensor1d(LABEL.slice(0, NUM_TRAIN_DATA), 'int32'), NUM_CLASSES);
+            this.ytest = tf.oneHot(tf.tensor1d(LABEL.slice(NUM_TRAIN_DATA), 'int32'), NUM_CLASSES);
+        } else {
+            //full training
+            this.Xtrain = tf.tensor(TENSOR_DATA).reshape([DATA_SIZE, IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL]).div(255.0)
+            this.ytrain = tf.oneHot(tf.tensor1d(LABEL, 'int32'), NUM_CLASSES);
+
+        }
+
     }
 
 }

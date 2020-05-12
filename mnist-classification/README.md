@@ -22,7 +22,7 @@
 ### Train CNN Model in the backend (Set training command line arguments)
 
 ```
-node app.js --train=1 --epochs=10 --batch_size=64 --model_save_path='file:///home/TensorFlowjs_Projects/mnist-classification/public/assets/model'
+node app.js --train_mode=0 --epochs=10 --batch_size=64 --model_save_path='file:///home/TensorFlowjs_Projects/mnist-classification/public/assets/model'
 
 ```
 ### Start the Web server

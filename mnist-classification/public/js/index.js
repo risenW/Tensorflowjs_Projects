@@ -7,7 +7,7 @@ const canvasWidth = 400;
 const canvasHeight = 400;
 const canvasStrokeStyle = "white";
 const canvasLineJoin = "round";
-const canvasLineWidth = 5;
+const canvasLineWidth = 2;
 const canvasBackgroundColor = "black";
 const canvasId = "canvas";
 
