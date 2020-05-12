@@ -1,4 +1,3 @@
-const fs = require('fs');
 const tf = require('@tensorflow/tfjs-node');
 const data = require('./data')
 
@@ -39,7 +38,7 @@ function getModel() {
     model.add(tf.layers.dense({ units: 512, activation: 'relu' }));
     model.add(tf.layers.dense({ units: 10, activation: 'softmax' }));
 
-    const optimizer = 'sgd';
+    const optimizer = 'rmsprop';
     model.compile({
         optimizer: optimizer,
         loss: 'categoricalCrossentropy',
@@ -61,15 +60,20 @@ exports.trainModel = async (args) => {
         await cnn_model.fit(dataset.Xtrain, dataset.ytrain, {
             epochs: args.epochs,
             batchSize: args.batch_size,
-            validationData: [dataset.Xtest, dataset.ytest],
+            validationSplit: 0.2,
             callbacks: {
                 onEpochEnd: async (epoch, logs) => {
-                    console.log(`EPOCH: ${epoch + 1} ==> Train Accuracy: ${logs.acc.toFixed(2) * 100},
-                                  Val Accuracy:  ${logs.val_acc.toFixed(2) * 100}`);
+                    console.log(`EPOCH (${epoch + 1}): Train Accuracy: ${(logs.acc * 100).toFixed(2)}, Val Accuracy:  ${(logs.val_acc * 100).toFixed(2)}\n`);
                 }
             }
         })
 
+        console.log("Testing on Final Test Set")
+        const eval = cnn_model.evaluate(dataset.Xtest, dataset.ytest)
+        console.log(`Test Loss: ${(eval[0].dataSync()[0]).toFixed(3)}, Test Accuracy:  ${(eval[1].dataSync()[0] * 100).toFixed(2)}\n`);
+
+
+        console.log('*************************\n')
         console.log(`Saving Model to ${args.model_save_path}`)
         await cnn_model.save(args.model_save_path)
         console.log(`Saved model to path: ${args.model_save_path}\n`);

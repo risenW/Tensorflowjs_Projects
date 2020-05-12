@@ -1,11 +1,9 @@
-const tf = require('@tensorflow/tfjs-node');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const argparse = require('argparse');
 
-const data = require('./data')
 const model = require('./model')
 
 

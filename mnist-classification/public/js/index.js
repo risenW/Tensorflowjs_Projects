@@ -150,8 +150,8 @@ function getImageFromCanvas(image) {
         .expandDims(2)
         .expandDims()
         .toFloat()
-        .div(255.0)
-    return tensor
+    return tensor.div(255.0)
+
 
 }
 
@@ -159,5 +159,5 @@ function getImageFromCanvas(image) {
 async function predict() {
     let tensor = getImageFromCanvas(canvas);
     let pred = await model.predict(tensor).argMax([-1])
-    predval.innerText = pred.arraySync()[0]
+    predval.innerText = `This is a ${pred.arraySync()}`
 }
