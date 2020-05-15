@@ -1,5 +1,5 @@
 /***
- * Code for canvas drawing is mostly stolen from this nice project below
+ * Code for canvas drawing was stolen shamelessly from this nice project below
  * https://github.com/Gogul09/digit-recognizer-live/blob/master/js/app.js
  */
 
@@ -27,10 +27,6 @@ canvas.setAttribute("height", canvasHeight);
 canvas.setAttribute("id", canvasId);
 canvas.style.backgroundColor = canvasBackgroundColor;
 canvasBox.appendChild(canvas);
-
-if (typeof G_vmlCanvasManager != 'undefined') {
-    canvas = G_vmlCanvasManager.initElement(canvas);
-}
 
 ctx = canvas.getContext("2d");
 
