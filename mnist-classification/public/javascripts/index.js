@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadModel() {
     tstatus.innerText = 'Loading Model...'
-    model = await tf.loadLayersModel("http://localhost:3000/assets/model/model.json");
+    model = await tf.loadLayersModel("http://localhost:3000/assets/model/py_model.json");
     tstatus.innerText = 'Model Loaded Successfully. Start Drawing!'
     // model.summary()
 }
