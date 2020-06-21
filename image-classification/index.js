@@ -1,5 +1,4 @@
-let base_net;
-let webcam
+let base_net,webcam;
 const webcamElement = document.getElementById('webcam');
 const classifier = knnClassifier.create();
 
@@ -8,8 +7,7 @@ async function addExample(classId) {
     // Capture an image from the web camera.
     const img = await webcam.capture();
 
-    // Get the intermediate activation of MobileNet 'conv_preds' and pass that
-    // to the KNN classifier.
+    // Get the intermediate activation of MobileNet
     const activation = base_net.infer(img, true);
 
     // Pass the intermediate activation to the classifier.
@@ -18,6 +16,7 @@ async function addExample(classId) {
     // Dispose the tensor to release the memory.
     img.dispose();
 }
+
 
 
 async function app() {
