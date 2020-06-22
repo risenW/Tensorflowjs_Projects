@@ -32,4 +32,4 @@ npm start
 
 ```
 
-### [Link]() to Article Coming Soon!
+### [Link](https://heartbeat.fritz.ai/deep-learning-in-javascript-part-2-a2823defd3d9) to Medium article!
