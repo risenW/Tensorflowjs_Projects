@@ -14,7 +14,7 @@
 
 ```
 
-### [Link]() to Article Coming Soon!
+### [Link](https://heartbeat.fritz.ai/deep-learning-with-javascript-part-1-c9a83fe0f063) to Medium article
 
 
 ### EXTRA LINKS
