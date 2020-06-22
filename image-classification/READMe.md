@@ -1,6 +1,6 @@
 ## Custom Real-Time Image Classifier Using Transfer Learning in JavaScript
 
-![](pred-giphy.gif)
+![](2020-06-22-08-28-57.gif)
 
 ### INSTALLATION PROCESS
 
