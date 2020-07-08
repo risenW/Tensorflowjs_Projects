@@ -10,8 +10,6 @@
    git clone https://github.com/risenW/Tensorflowjs_Projects
    cd Tensorflowjs_Projects/image-classification
 ```
+- Open index.html in a browser
 
-```
-### Open index.html in a browser
-
-### [Link]() to Article for more Explanation
+#### [Link](https://heartbeat.fritz.ai/deep-learning-in-javascript-part-4-294c53cbe28) to Article for more Explanation
