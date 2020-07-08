@@ -11,7 +11,6 @@
    cd Tensorflowjs_Projects/face-mesh
 ```
 
-```
-### Open index.html in a browser
+- Open index.html in a browser
 
-### [Link]() to Article for more Explanation
+#### [Link](https://heartbeat.fritz.ai/constructing-a-3d-face-mesh-from-face-landmarks-in-real-time-with-tensorflow-js-and-plot-js-62b177abcf9f) to Article for more Explanation
