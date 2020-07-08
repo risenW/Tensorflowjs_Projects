@@ -26,22 +26,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="#">About</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -71,6 +56,10 @@
                     </div>
                     {{/each}}
                     {{else}}
+                    <div class="col-md-12">
+                        <h4 class="text-info text-center">Welcome to MyBooks Store!</h4>
+                        <hr>
+                    </div>
                     {{#each books}}
                     <div class="col-md-4 card">
                         <img src="{{this.image_url}}" class="card-img-top text-center" alt=""
@@ -85,7 +74,7 @@
 
                 </div>
                 <hr>
-                <div class="row text-center" style="margin-bottom: 200px;">
+                <div class="row text-center" style="margin-bottom: 200px; ">
                     <div class="col-md-6">
                         <form action="/get-prev" method="GET">
                             <input name="pg_end" type="hidden" value="{{pg_end}}" />
@@ -105,7 +94,7 @@
                 </div>
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin-top: 100px;">
                 <p class="text-info"><b>Note:</b> In a real application, you will probably get the ID from the logged in
                     user!</p>
                 <form class="form" action="/recommend" method="GET">
