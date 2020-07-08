@@ -28,16 +28,19 @@ app.get("/", (req, res) => {
 });
 
 
+
 app.get("/recommend", (req, res) => {
     let userId = req.query.userId
-    model.recommend(userId)
-        .then((recommendations) => {
-            res.render("/index", { books: recommendations})
-        }).catch((err) => {
-            console.log(err);
-            res.send("An Error occured!")
+    if (Number(userId) > 10000 || Number(userId) < 0) {
+        res.send("User Id cannot be greater tha 10000 or less than 0!")
+    } else {
+        recs = model.recommend(userId)
+            .then((recs) => {
+                res.render("index", { recommendations: recs, forUser: true })
+            })
+    }
 
-        })
+
 
 })
 

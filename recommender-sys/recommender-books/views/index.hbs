@@ -55,6 +55,22 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
+                    {{#if forUser}}
+                    <div class="col-md-12">
+                        <h4 class="text-info text-center">Here are you recommended books!</h4>
+                        <hr>
+                    </div>
+                    {{#each recommendations}}
+                    <div class="col-md-4 card">
+                        <img src="{{this.image_url}}" class="card-img-top text-center" alt=""
+                            style="width: 200px; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.title}}</h5>
+                            <P class="text-info"><span><b>Author(s): </b></span>{{this.authors}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
                     {{#each books}}
                     <div class="col-md-4 card">
                         <img src="{{this.image_url}}" class="card-img-top text-center" alt=""
@@ -65,6 +81,8 @@
                         </div>
                     </div>
                     {{/each}}
+                    {{/if}}
+
                 </div>
                 <hr>
                 <div class="row text-center" style="margin-bottom: 200px;">
