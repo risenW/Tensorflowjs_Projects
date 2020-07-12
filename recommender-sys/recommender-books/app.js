@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const expressHbs = require("express-handlebars");
-const books = require("../data/web_book_data.json")
+const books = require("./data/web_book_data.json")
 const model = require("./model")
 
 const app = express();
@@ -31,8 +31,8 @@ app.get("/", (req, res) => {
 
 app.get("/recommend", (req, res) => {
     let userId = req.query.userId
-    if (Number(userId) > 10000 || Number(userId) < 0) {
-        res.send("User Id cannot be greater tha 10000 or less than 0!")
+    if (Number(userId) > 53424 || Number(userId) < 0) {
+        res.send("User Id cannot be greater than 53,424 or less than 0!")
     } else {
         recs = model.recommend(userId)
             .then((recs) => {

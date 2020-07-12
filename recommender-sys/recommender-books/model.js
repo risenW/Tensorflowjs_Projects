@@ -1,6 +1,6 @@
 
 const tf = require('@tensorflow/tfjs-node')
-const books = require("../data/web_book_data.json")
+const books = require("./data/web_book_data.json")
 
 
 
