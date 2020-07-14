@@ -20,8 +20,8 @@ exports.recommend = async function recommend(userId) {
     let book_in_js_array = book_arr.arraySync()
     await loadModel()
     console.log(`Recommending for User: ${userId}`)
-    pred = await model.predict([book_arr, user]).reshape([10000]).arraySync()
     pred_tensor = await model.predict([book_arr, user]).reshape([10000])
+    pred = pred_tensor.arraySync()
     
     let recommendations = []
     for (let i = 0; i < 6; i++) {
