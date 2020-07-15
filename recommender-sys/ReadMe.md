@@ -4,6 +4,8 @@
 
 The Book Recommender application is built using Tensorflow-Keras on book data from [Here](https://www.kaggle.com/zygmunt/goodbooks-10k).
 
+__Link to live site [here](https://book-recommender-b4090.web.app/)__
+
 The model uses embeddings to learn the mapping of books and users to ratings. This can help us identify similar books depending on the book and user interaction.
 
 The [Python-Model](/Python-Model) folder contains all Python training files, including dataset, saved model, and embeddings which we visualized below, using the Tensorflow Projector.
