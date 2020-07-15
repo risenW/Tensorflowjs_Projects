@@ -35,3 +35,7 @@ To run the application, follow the steps below:
 ```bash
     npm start
 ```
+
+
+The [rec-book-firebase](/rec-book-firebase) folder contains the modified version of [recommender-sys](/recommender-sys) which is hosted on Google Firebase.
+
