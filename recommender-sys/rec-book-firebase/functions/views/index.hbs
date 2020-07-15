@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Books</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 100px;">
+        <a class="navbar-brand" href="#">MyBooks</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    {{#if forUser}}
+                    <div class="col-md-12">
+                        <h4 class="text-info text-center">Here are you recommended books!</h4>
+                        <hr>
+                    </div>
+                    {{#each recommendations}}
+                    <div class="col-md-4 card">
+                        <img src="{{this.image_url}}" class="card-img-top text-center" alt=""
+                            style="width: 200px; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.title}}</h5>
+                            <P class="text-info"><span><b>Author(s): </b></span>{{this.authors}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    <div class="col-md-12">
+                        <h4 class="text-info text-center">Welcome to MyBooks Store!</h4>
+                        <hr>
+                    </div>
+                    {{#each books}}
+                    <div class="col-md-4 card">
+                        <img src="{{this.image_url}}" class="card-img-top text-center" alt=""
+                            style="width: 200px; height: 250px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.title}}</h5>
+                            <P class="text-info"><span><b>Author(s): </b></span>{{this.authors}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+
+                </div>
+                <hr>
+                <div class="row text-center" style="margin-bottom: 200px; ">
+                    <div class="col-md-6">
+                        <form action="/get-prev" method="GET">
+                            <input name="pg_end" type="hidden" value="{{pg_end}}" />
+                            <input name="pg_start" type="hidden" value="{{pg_start}}" />
+                            <button class="btn btn-info" type="submit">Prev</button>
+
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="/get-next" method="GET">
+                            <input name="pg_end" type="hidden" value="{{pg_end}}" />
+                            <input name="pg_start" type="hidden" value="{{pg_start}}" />
+                            <button class="btn btn-primary" type="submit">Next</button>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4" style="margin-top: 100px;">
+                <p class="text-info"><b>Note:</b> In a real application, you will probably get the ID from the logged in
+                    user!</p>
+                <form class="form" action="/recommend" method="GET">
+                    <div class="form-group">
+                        <label for="userId">Enter a User ID between 0-10000</label>
+                        <input class="form-control" type="number" name="userId" />
+                        <button class="btn btn-primary" type="submit">Get Recommendations</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
