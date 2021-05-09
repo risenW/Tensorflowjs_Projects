@@ -18,7 +18,7 @@
     "cookie-parser": "~1.4.4",
     "express": "~4.16.1",
     "express-handlebars": "^3.0.0",
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"
