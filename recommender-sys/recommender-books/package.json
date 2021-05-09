@@ -11,7 +11,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-handlebars": "^3.0.0",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.4"
