@@ -16,7 +16,7 @@
     "firebase-functions": "^3.6.1",
     "@tensorflow/tfjs-node": "1.7.4",
     "cookie-parser": "~1.4.4",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.7.6"
   },
