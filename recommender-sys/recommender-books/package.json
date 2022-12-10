@@ -9,7 +9,7 @@
     "@tensorflow/tfjs-node": "1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.7.6",
     "http-errors": "~1.6.3",
